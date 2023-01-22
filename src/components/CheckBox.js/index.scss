@@ -1,0 +1,17 @@
+.CheckBox {
+  .button-box {
+    height: 40px;
+    button {
+      &:focus {
+        font-weight: bold;
+      }
+      &:not(.active) i {
+        opacity: 0;
+      }
+    }
+  }
+  .message {
+    min-height: 15px;
+    font-size: 0.6rem;
+  }
+}

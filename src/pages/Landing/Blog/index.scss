@@ -1,0 +1,13 @@
+.Blog {
+  .main-img-section {
+    perspective: 1000px;
+    img {
+      transform: rotateY(-15deg);
+      transform-origin: 100% center;
+      &:hover {
+        transform: rotateY(0deg);
+        transform-origin: center center;
+      }
+    }
+  }
+}

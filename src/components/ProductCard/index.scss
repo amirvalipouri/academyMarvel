@@ -1,0 +1,11 @@
+.ProductCard {
+  &:hover {
+    box-shadow: 0 0.5rem 1rem rgb(var(--bs-primary-rgb), 0.15);
+  }
+  .img-box {
+    aspect-ratio: 3/2;
+  }
+  .categories > *:not(:last-child) {
+    margin-left: 0.5rem;
+  }
+}

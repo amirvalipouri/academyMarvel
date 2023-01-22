@@ -1,0 +1,114 @@
+.AdminPanel {
+  min-height: 100vh;
+  .setting-btn {
+    width: 40px;
+    height: 40px;
+    bottom: 10px;
+    left: 10px;
+  }
+  .sidebar {
+    height: 100vh;
+    .sidebar-content {
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      ::-webkit-scrollbar {
+        width: 0.25rem;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #fff5;
+        border-radius: 50rem;
+      }
+      > *:not(.bg-img) {
+        position: relative;
+      }
+      a {
+        padding: 0.5rem 0.75rem;
+        border-right: 4px solid transparent;
+        transition: 250ms;
+        margin-bottom: 0.5rem;
+        --bs-bg-opacity: 0;
+        i {
+          min-width: 30px;
+          width: 30px;
+          height: 30px;
+          transition: inherit;
+        }
+        &:hover,
+        &.active {
+          --bs-bg-opacity: 0.1;
+          border-right-color: var(--bs-primary);
+          i {
+            background-color: white;
+            color: var(--bs-dark);
+          }
+        }
+        &:hover,
+        &.active {
+          --bs-bg-opacity: 0.1;
+          border-right-color: var(--bs-primary);
+          i {
+            background-color: white;
+            color: var(--bs-dark);
+          }
+        }
+      }
+    }
+  }
+  > div > header {
+    z-index: 5;
+    .time {
+      filter: blur(0.25px);
+      span {
+        &:nth-child(1) {
+          color: var(--bs-primary);
+          &::after {
+            content: " :";
+          }
+        }
+        &:nth-child(2) {
+          color: var(--bs-danger);
+          &::after {
+            content: " :";
+            animation: time 1s steps(1) infinite;
+          }
+        }
+        &:nth-child(3) {
+          color: var(--bs-warning);
+        }
+        &:nth-child(4) {
+          color: var(--bs-dark-blue);
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 992px) {
+  .AdminPanel {
+    .sidebar {
+      position: fixed;
+      pointer-events: none;
+      background-color: transparent;
+      z-index: 10;
+      transition: background-color 250ms;
+      .sidebar-content {
+        width: 300px;
+        transform: translateX(100%);
+        transition: transform 250ms;
+        a {
+        }
+      }
+      &.active {
+        pointer-events: all;
+        background-color: rgba(0, 0, 0, 0.25);
+        .sidebar-content {
+          transform: translateX(0);
+        }
+      }
+    }
+  }
+}

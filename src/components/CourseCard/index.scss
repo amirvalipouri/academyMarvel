@@ -1,0 +1,38 @@
+.CourseCard {
+  //   .bg-div {
+  //     &::before,
+  //     &::after {
+  //       content: "";
+  //       position: absolute;
+  //       width: 100%;
+  //       left: 0;
+  //     }
+  //     &::before {
+  //       top: 0;
+  //       background-color: var(--bs-primary);
+  //       height: 100px;
+  //       //   clip-path: polygon(100% 0, 100% 100%, 50% 50%, 0 100%, 0 0);
+  //       clip-path: polygon(0 0, 100% 0, 100% 100%, 0 50%);
+  //     }
+  //     &::after {
+  //       bottom: 0;
+  //       height: 25px;
+  //       background-color: var(--bs-dark-blue);
+  //     }
+  //   }
+  .content {
+    .index {
+      width: 75px;
+      height: 75px;
+      backdrop-filter: blur(2.5px);
+      transform: rotateZ(45deg);
+      span {
+        transform: rotateZ(-45deg);
+      }
+    }
+    > *:not(:last-child) {
+      margin-bottom: 1rem;
+      text-align-last: center;
+    }
+  }
+}

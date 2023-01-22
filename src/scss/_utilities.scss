@@ -1,0 +1,178 @@
+$utilities: (
+  "background-color": (
+    property: background-color,
+    class: bg,
+    responsive: true,
+    local-vars: (
+      "bg-opacity": 1,
+    ),
+    values:
+      map-merge(
+        $utilities-bg-colors,
+        (
+          "transparent": transparent,
+        )
+      ),
+  ),
+  "bg-opacity": (
+    css-var: true,
+    class: bg-opacity,
+    values: (
+      10: 0.1,
+      20: 0.2,
+      25: 0.25,
+      30: 0.3,
+      40: 0.4,
+      50: 0.5,
+      60: 0.6,
+      70: 0.7,
+      75: 0.75,
+      80: 0.8,
+      90: 0.9,
+      100: 1,
+    ),
+  ),
+  "border-color": (
+    property: border-color,
+    class: border,
+    responsive: true,
+    values: $theme-colors,
+  ),
+  "color": (
+    property: color,
+    class: text,
+    responsive: true,
+    values: $theme-colors,
+  ),
+  "rounded": (
+    property: border-radius,
+    class: rounded,
+    values: (
+      null: 0.5rem,
+      1: 0.1rem,
+      2: 0.2rem,
+      3: 0.3rem,
+      4: 0.4rem,
+      5: 0.5rem,
+      6: 0.6rem,
+      7: 0.7rem,
+      8: 0.8rem,
+      9: 0.9rem,
+      10: 1rem,
+      circle: 50%,
+      pill: 50rem,
+    ),
+  ),
+  "opacity": (
+    property: opacity,
+    class: opacity,
+    responsive: true,
+    values: (
+      0: 0,
+      1: 0.1,
+      2: 0.2,
+      3: 0.3,
+      4: 0.4,
+      5: 0.5,
+      6: 0.6,
+      7: 0.7,
+      8: 0.8,
+      9: 0.9,
+      10: 1,
+    ),
+  ),
+  "flex": (
+    property: flex,
+    class: flex,
+    values: (
+      1: 1,
+      2: 2,
+      3: 3,
+    ),
+  ),
+  "line-height": (
+    property: line-height,
+    class: lh,
+    values: (
+      normal: 100%,
+      sm: 150%,
+      md: 175%,
+      lg: 200%,
+    ),
+  ),
+  "transition": (
+    property: transition,
+    class: transition,
+    values: (
+      none: none,
+      null: all 250ms ease,
+      500: all 500ms ease,
+    ),
+  ),
+  "shadow": (
+    property: box-shadow,
+    class: shadow,
+    values: (
+      null: $box-shadow,
+      sm: $box-shadow-sm,
+      lg: $box-shadow-lg,
+      input: $input-focus-box-shadow,
+      none: none,
+    ),
+  ),
+  "text-align": (
+    responsive: true,
+    property: text-align,
+    class: text,
+    values: (
+      start: start,
+      end: end,
+      center: center,
+      justify: justify,
+    ),
+  ),
+  "cursor": (
+    property: cursor,
+    class: cursor,
+    values: (
+      pointer: pointer,
+      default: default,
+    ),
+  ),
+  "object-fit": (
+    property: object-fit,
+    class: object-fit,
+    values: (
+      unset: unset,
+      cover: cover,
+      contain: contain,
+    ),
+  ),
+  "white-space": (
+    property: white-space,
+    class: white-space,
+    values: (
+      pre-wrap: pre-wrap,
+      nowrap: nowrap,
+      normal: normal,
+    ),
+  ),
+  "font-family": (
+    property: font-family,
+    class: font,
+    values: (
+      en: "estedad-en",
+      fa: "estedad-fa",
+    ),
+  ),
+  "row-gap": (
+    property: row-gap,
+    class: row-gap,
+    values: $spacers,
+  ),
+  "col-gap": (
+    property: column-gap,
+    class: col-gap,
+    values: $spacers,
+  ),
+);

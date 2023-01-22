@@ -1,0 +1,49 @@
+.Table {
+  max-width: 100%;
+  min-height: 375px;
+  table {
+    min-width: 400px;
+    border-collapse: collapse;
+    vertical-align: middle;
+    thead {
+      tr {
+        color: var(--bs-secondary);
+        font-size: 0.75rem;
+      }
+    }
+    tbody {
+      border-top: none !important;
+      tr {
+        &:last-child {
+          border-bottom: none;
+          > * {
+            border-bottom: none;
+          }
+        }
+      }
+    }
+    &.table-hover {
+      tbody {
+        tr {
+          > * {
+            transition: 0.2s;
+          }
+          td {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    * {
+      white-space: inherit;
+    }
+    // th:nth-child(even),
+    // td:nth-child(even) {
+    //   text-align: end;
+    // }
+    // th:nth-child(odd),
+    // td:nth-child(odd) {
+    //   text-align: start;
+    // }
+  }
+}

@@ -1,0 +1,52 @@
+.Cart {
+  .steps {
+    .step {
+      flex: 1;
+      button {
+        width: 45px;
+        height: 45px;
+        background-color: var(--bs-secondary);
+        transition: background-color 250ms;
+        &::before {
+          content: "";
+          position: absolute;
+          border: 3px solid white;
+          inset: 3px;
+          border-radius: inherit;
+        }
+      }
+      h6 {
+        color: var(--bs-secondary);
+        transition: background-color 250ms;
+      }
+      &.active {
+        button {
+          background-color: var(--bs-primary);
+        }
+        h6 {
+          color: var(--bs-primary);
+        }
+      }
+    }
+  }
+  .step-line {
+    width: 70%;
+    height: 5px;
+    top: 20px;
+    left: 15%;
+    background-color: var(--bs-secondary);
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: var(--width);
+      background-color: var(--bs-primary);
+      transition: width 250ms;
+    }
+  }
+  .cart-item {
+    width: 200px;
+  }
+}

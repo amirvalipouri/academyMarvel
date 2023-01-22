@@ -1,0 +1,11 @@
+.CommentBox {
+  @media (min-width: 992px) {
+    .body {
+      padding-left: calc(1rem + 76px);
+      padding-right: calc(0.5rem + 50px);
+    }
+  }
+  .like-section {
+    min-width: 76px;
+  }
+}

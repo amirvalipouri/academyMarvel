@@ -1,0 +1,46 @@
+$white: #ffffff;
+$black: #000000;
+$primary: #2e51db;
+$secondary: #9291a9;
+$success: #60c08e;
+$info: #02005d;
+$warning: #fbb303;
+$danger: #e6332a;
+$light: #ebebeb;
+$dark: #434343;
+
+$gray: #b5c3d6;
+$light-gray: #e2e8f0;
+$dark-gray: #e0e0e0;
+$dark-blue: #162358;
+$gold: #ffc107;
+
+$input-focus-box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 25%);
+
+$custom-colors: (
+  "white": $white,
+  "black": $black,
+  "primary": $primary,
+  "secondary": $secondary,
+  "success": $success,
+  "info": $info,
+  "warning": $warning,
+  "danger": $danger,
+  "light": $light,
+  "dark": $dark,
+  "gray": $gray,
+  "light-gray": $light-gray,
+  "dark-gray": $dark-gray,
+  "dark-blue": $dark-blue,
+  "gold": $gold,
+);
+
+$custom-font-sizes: (
+  7: $font-size-base * 0.75,
+  8: $font-size-base * 0.5,
+);
+
+$theme-colors: map-merge($theme-colors, $custom-colors);
+$font-sizes: map-merge($font-sizes, $custom-font-sizes);
+$theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value");
+$utilities-bg-colors: map-loop($theme-colors, rgba-css-var, "$key", "bg");

@@ -1,0 +1,16 @@
+.Product {
+  .img-box {
+    .circle {
+      aspect-ratio: 1/1;
+    }
+  }
+  .tabs-btn button {
+    height: 60px;
+    &:first-child {
+      border-top-right-radius: 0.5rem;
+    }
+    &:last-child {
+      border-top-left-radius: 0.5rem;
+    }
+  }
+}

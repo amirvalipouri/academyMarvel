@@ -1,0 +1,65 @@
+.Home {
+  .main-section {
+    .title {
+      @media (min-width: 992px) {
+        position: absolute;
+        z-index: 1;
+        top: calc(50% - 100px);
+        right: 0;
+      }
+    }
+    .main-img {
+      width: 150%;
+      @media (min-width: 992px) {
+        width: 100%;
+      }
+    }
+  }
+  .course-efficiency {
+    .value {
+      width: 125px;
+      div {
+        height: 7px;
+        &:last-child::before {
+          content: "";
+          position: absolute;
+          background-color: var(--bs-primary);
+          border-radius: inherit;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: var(--val);
+        }
+      }
+    }
+  }
+  .Comments .coin-icon {
+    position: absolute;
+    object-fit: contain;
+    width: 150px;
+    height: 150px;
+    &:nth-child(1) {
+      top: -75px;
+      left: calc(50% - 75px);
+      transform: scale(0.85);
+    }
+    &:nth-child(2) {
+      top: calc(50% - 75px);
+      left: -75px;
+      transform: translateY(-25px);
+    }
+    &:nth-child(3) {
+      bottom: -75px;
+      left: calc(50% - 75px);
+      transform: scale(0.9);
+    }
+    &:nth-child(4) {
+      top: calc(50% - 75px);
+      right: -75px;
+      transform: scale(0.7) translateY(25px);
+    }
+  }
+  .swiper-wrapper {
+    align-items: stretch;
+  }
+}

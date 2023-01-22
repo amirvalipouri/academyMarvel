@@ -1,0 +1,64 @@
+.Input {
+  width: 100%;
+  height: fit-content;
+  .input-box {
+    width: 100%;
+    position: relative;
+    > input,
+    > textarea {
+      flex: 1;
+      outline: none;
+      background-color: transparent;
+      text-align: right;
+      transition: 250ms;
+    }
+    textarea {
+      min-height: 125px;
+    }
+    .rmdp-container {
+      display: block;
+      width: 100%;
+      .rmdp-range {
+        --bg-opacity: 0.75;
+        background-color: rgba(var(--bs-info-rgb), var(--bg-opacity));
+        transition: 100ms;
+        &.start,
+        &.end {
+          --bg-opacity: 1;
+        }
+        &.start {
+          border-bottom-right-radius: 0.5rem;
+          border-top-right-radius: 0.5rem;
+        }
+        &.end {
+          border-bottom-left-radius: 0.5rem;
+          border-top-left-radius: 0.5rem;
+        }
+      }
+    }
+  }
+  .message {
+    min-height: 15px;
+    font-size: 0.6rem;
+  }
+  // .rmdp-wrapper {
+  //   z-index: 5;
+  //   position: absolute;
+  //   top: calc(100% + 5px);
+  //   width: 100%;
+  //   transition: 500ms;
+  //   pointer-events: none;
+  //   transform: translateY(25px);
+  //   opacity: 0;
+  //   .rmdp-top-class {
+  //     margin-left: auto;
+  //     margin-right: auto;
+  //     width: max-content;
+  //   }
+  //   &.isShow {
+  //     pointer-events: all;
+  //     transform: translateY(0);
+  //     opacity: 1;
+  //   }
+  // }
+}

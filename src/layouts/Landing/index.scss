@@ -1,0 +1,24 @@
+.Landing {
+  > header {
+    @media (min-width: 992px) {
+      border-radius: 0 0 20px 20px;
+      box-shadow: 0px 4px 40px rgba(30, 56, 157, 0.04);
+    }
+    .user-control {
+      > a.btn {
+        width: 125px;
+      }
+    }
+  }
+  > main {
+    min-height: calc(100vh - 166px - 82px);
+  }
+  > footer {
+    a {
+      color: var(--bs-light);
+      &:hover {
+        color: var(--bs-info);
+      }
+    }
+  }
+}

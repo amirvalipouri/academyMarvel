@@ -1,0 +1,24 @@
+.Radio {
+  label {
+    > input {
+      transform: scale(2);
+      &:checked + div {
+        border-color: var(--variant);
+        div {
+          transform: scale(1);
+        }
+      }
+    }
+    > div {
+      width: 17.5px;
+      height: 17.5px;
+      border: 1px solid;
+      border-color: var(--bs-secondary);
+      > div {
+        inset: 2px;
+        border-radius: inherit;
+        transform: scale(0);
+      }
+    }
+  }
+}
