@@ -1,30 +1,31 @@
-import React ,{useState , useEffect} from 'react'
-import { Table , Pagination } from '../../../components'
+import React, { useState, useEffect } from 'react'
+import { Table, Pagination } from '../../../components'
 import { convertPhone, jsonToXlsx, scrollToTop } from "../../../methods";
 import { axios, moment } from "../../../boot";
 import { Col, Row } from "react-bootstrap";
 import { paymentMethods, purchaseStatus } from "../../../constants";
 
 const MyOrders = () => {
-    const basicParams = JSON.parse(sessionStorage.getItem("params")) ?? {};
-    const [ myOrder , setMyOrder ] = useState([])
-    const [pages, setPages] = useState({});
-    const [params, setParams] = useState({ page: 1, ...basicParams });
+  const basicParams = JSON.parse(sessionStorage.getItem("params")) ?? {};
+  const [myOrder, setMyOrder] = useState([])
+  const [pages, setPages] = useState({});
+  const [params, setParams] = useState({ page: 1, ...basicParams });
 
-    const getPurchases = () => {
-        const url = "/pub/shop/purchases";
-        axios.get(url).then(({ data }) => {
-          // console.log("my order : ",data)
-          setMyOrder(data.data)
-          setPages(data.pages);
-          scrollToTop();
-        });
-      };
-      useEffect(getPurchases , [])
-      const showStatus = (id = 0) => {
-        const { color, name } = purchaseStatus.find((e) => e.id === id) ?? {};
-        return <span className={`text-${color} fw-bold`}>{name}</span>;
-      };
+  const getPurchases = () => {
+    const url = "/pub/shop/purchases";
+    axios.get(url).then(({ data }) => {
+      setMyOrder(data.data)
+      setPages(data.pages);
+      scrollToTop();
+    });
+  };
+  useEffect(getPurchases, [])
+  const showStatus = (id = 0) => {
+    const { color, name } = purchaseStatus.find((e) => e.id === id) ?? {};
+    return <span className={`text-${color} fw-bold`}>{name}</span>;
+  };
+  if (Boolean(pages?.totalPages))
+    return <h4 className="text-primary text-center">شما تا به حال سفارشی نداشتید</h4>;
   return (
     <React.Fragment>
       {/* <Row className="d-print-none">
@@ -58,8 +59,8 @@ const MyOrders = () => {
               <td>
                 {e.refId}
               </td>
-              
-              <td className="text-success">{e.items[0]?.title_fa}</td>
+
+              <td className="text-success">{e.items?.map((e) => e.product?.title_fa).join(" - ")}</td>
               <td>
                 <span dir="ltr">
                   {moment.miladiToShamsi({

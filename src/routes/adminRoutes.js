@@ -28,9 +28,9 @@ import Purchase from "../pages/AdminPanel/Purchase";
 import ShippingInfo from "../pages/AdminPanel/ShippingInfo";
 import RefillProduct from "../pages/AdminPanel/RefillProduct";
 const adminRoutes = [
-  { path: "", element: <Navigate to="courses" replace /> },
-  { path: "courses", element: <Courses /> },
-  { path: "courses/:courseId", element: <Course /> },
+  { path: "", element: <Navigate to="purchases" replace /> },
+  // { path: "courses", element: <Courses /> },
+  // { path: "courses/:courseId", element: <Course /> },
   { path: "sessions", element: <Sessions /> },
   { path: "sessions/:sessionId", element: <Session /> },
   { path: "exams", element: <Exams /> },

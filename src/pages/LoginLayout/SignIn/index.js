@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Col } from "react-bootstrap";
 import cloneDeep from "lodash/cloneDeep";
+import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { Form, Input, Button } from "../../../components";
 import { rules, rolesPath } from "../../../constants";
 import { axios } from "../../../boot";
 import { useQuery, useSetToken } from "../../../hooks";
 import { convertPhone, toast } from "../../../methods";
+import Profile from "../../UsersPanel/Profile";
 // import googleIcon from "../../../assets/icons/Google.svg";
 // import linkedInIcon from "../../../assets/icons/LinkedIn.svg";
 
@@ -17,6 +19,9 @@ export default function SignIn() {
   const [params] = useSearchParams();
   const phone = params.get("phone");
   const [data, setData] = useState({ phone });
+  
+  // console.log("full name : ",fullName)
+  
   const tabs = {
     sms: "شماره موبایل",
     email: "ایمیل",
@@ -79,9 +84,12 @@ export default function SignIn() {
   const handleSetToken = ({ data, headers }) => {
     const token = data.token
     const role = data.role;
+    console.log("information : " , data)
     const text = "برای دسترسی به دوره‌ها ثبت‌نام کنید.";
     role === "unregistered" && toast({ text });
     setToken({ token, role });
+    
+    if(data.firstName?.length == 0 || data.lastName?.length == 0) return navigate("/profile")
     if (hasCart) return navigate("/cart");
     navigate(rolesPath[role] ?? "/", { replace: true });
   };

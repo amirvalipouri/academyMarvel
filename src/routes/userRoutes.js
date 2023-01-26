@@ -18,6 +18,7 @@ import Blog from "../pages/Landing/Blog";
 import BlogDetail from "../pages/Landing/BlogDetail";
 import Receipt from "../pages/UsersPanel/Receipt";
 import MyOrders from "../pages/UsersPanel/MyOrders";
+import License from "../pages/UsersPanel/License";
 
 const userRoutes = [
   // {
@@ -27,6 +28,10 @@ const userRoutes = [
   {
     path: "my-order",
     element: <MyOrders />,
+  },
+  {
+    path: "license",
+    element: <License/>,
   },
   {
     path: "registers",

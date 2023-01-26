@@ -57,7 +57,12 @@ const user = [
   {
     label: "سفارشات من",
     path: "/my-order",
-    icon: "cart-fill",
+    icon: "bag-fill",
+  },
+  {
+    label: "لایسنس های من",
+    path: "/license",
+    icon: "key",
   },
   // {
   //   label: "لیدربورد مارول",

@@ -40,6 +40,12 @@ export default function Profile() {
   ];
   const dispatch = useDispatch();
   const profile = useSelector((s) => s.profile);
+  console.log(profile)
+  if(profile?.lastName?.length == 0 || profile?.firstName?.length == 0){
+    const text = "لطفا اطلاعات خود را وارد کنید"
+    toast({text})
+  }
+  
   const [data, setData] = useState({});
   const setProfile = (data = {}) => {
     dispatch({ type: "SET_PROFILE", data });
@@ -52,6 +58,7 @@ export default function Profile() {
     delete body.phone;
     axios.put(url, body).then(() => {
       toast({});
+      
       setProfile({ ...profile, ...body });
     });
   };
@@ -62,7 +69,7 @@ export default function Profile() {
         <Col key={index} xs="12" md="6" lg="4">
           <Input
             {...item}
-            value={data[item.state]}
+            value={data && data[item.state]}
             setValue={(val) => setData((p) => ({ ...p, [item.state]: val }))}
           />
         </Col>

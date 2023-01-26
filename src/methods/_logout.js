@@ -8,6 +8,7 @@ export default function logout(isRequest = false) {
   !isRequest && toast({ text });
   store.dispatch({ type: "SET_IS_LOGGED", data: false });
   store.dispatch({ type: "SET_ROLE", data: null });
+  store.dispatch({ type: "SET_PROFILE", data: null });
   localStorage.removeItem("token");
   localStorage.removeItem("role");
 }

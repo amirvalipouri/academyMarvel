@@ -59,9 +59,14 @@ export default function Purchase({ data = {} }) {
       _id: id,
     };
     axios.post(url, body).then(({ data }) => {
-      const url = window.URL.createObjectURL(new Blob([data.address]));
+      const address = data.address
+      //   const url = window.URL.createObjectURL(new Blob([`https://api.academymarvel.com${address}`], {
+      //     type: "application/pdf"
+      // }));
+      const url = `https://api.academymarvel.com${address}`
       const link = document.createElement('a');
       link.href = url;
+      link.target = "_blank"
       link.setAttribute('download', 'file.pdf'); //or any other extension
       document.body.appendChild(link);
       link.click();

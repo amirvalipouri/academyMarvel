@@ -46,7 +46,7 @@ export default function SignUp() {
       const token = headers["x-auth-token"];
       const role = data.role;
       setToken({ token, role });
-      navigate("/dashboard");
+      navigate("/");
     });
   };
   return (

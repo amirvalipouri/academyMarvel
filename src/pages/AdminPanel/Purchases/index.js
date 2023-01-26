@@ -17,6 +17,7 @@ export default function Purchases() {
   const [modalInfo, setModalInfo] = useState(null)
   const [id, setId] = useState([])
   const [reason, setReason] = useState(null)
+  const [ update , setUpdate ] = useState(0)
 
   const saveParams = () => {
     const value = JSON.stringify(params);
@@ -36,8 +37,7 @@ export default function Purchases() {
       ([config.params.startDate, config.params.endDate] = params.date);
     delete config.params.date;
     axios.get(url, config).then(({ data }) => {
-      // setPurchases((p) => [...p, ...data.data]);
-      console.log("data is : ", data)
+      
       setPurchases(data.data);
       setPages(data.pages);
       scrollToTop();
@@ -121,7 +121,7 @@ export default function Purchases() {
       reason
     };
     axios.post(url, body).then(({ data }) => {
-      console.log(data)
+      setUpdate(p => p+1)
       toast({});
       setId([])
       setReason(null)
@@ -157,7 +157,7 @@ export default function Purchases() {
       status
     };
     axios.post(url, body).then(({ data }) => {
-      console.log(data)
+      setUpdate(p => p+1)
       toast({});
 
     });
@@ -215,7 +215,7 @@ export default function Purchases() {
   }
 
 
-  useEffect(getPurchases, [params]);
+  useEffect(getPurchases, [params,update]);
   return (
     <React.Fragment>
       <PrintModal show={modalInfo != null} onHide={() => setModalInfo(null)} size="lg">

@@ -1,4 +1,4 @@
-import { Col } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { paymentMethods, purchaseStatus } from "../../../constants";
 import { convertPhone } from "../../../methods";
 
@@ -25,7 +25,7 @@ export default function ShowInfo({ data = {} }) {
     },
     {
       label: "نام محصول(ها)",
-      value: data?.items?.map((e) => e?.title_fa).join(" - "),
+      value: data?.items?.map((e) => e.product?.title_fa).join(" - "),
     },
     {
       label: "تعداد",
@@ -42,18 +42,16 @@ export default function ShowInfo({ data = {} }) {
       label: "هزینه ارسال",
       value:
         !!data?.shippingFee && !!data?.shippingFeeUsd
-          ? `${data?.shippingFee.toLocaleString()} تومان - ${
-              data?.shippingFeeUsd
-            } تتر`
+          ? `${data?.shippingFee.toLocaleString()} تومان - ${data?.shippingFeeUsd
+          } تتر`
           : "رایگان",
       color: "success",
     },
     {
       label: "قیمت نهایی",
       color: "primary",
-      value: `${data?.totalPrice?.toLocaleString()} تومان - ${
-        data?.totalPriceUsd
-      } تتر`,
+      value: `${data?.totalPrice?.toLocaleString()} تومان - ${data?.totalPriceUsd
+        } تتر`,
     },
     {
       label: "نوع پرداخت",
@@ -63,10 +61,24 @@ export default function ShowInfo({ data = {} }) {
       label: "وضعیت",
       value: showPurchaseStatus(data?.status),
     },
+
   ];
-  return formControls.map((e) => (
-    <Col key={e.label} xs="12" md="6" className={`text-${e.color}`}>
-      <span className="text-secondary">{e.label}:</span> {e.value}
-    </Col>
-  ));
+  return (
+    <Row>
+      {formControls.map((e) => (
+        <Col key={e.label} xs="12" md="6" className={`text-${e.color}`}>
+          <span className="text-secondary">{e.label}:</span> {e.value}
+        </Col>
+      ))}
+
+      {data?.spotLisence?.length > 0 &&
+        <Col  xs="12" md="12" className={`d-print-none`}>
+          <span className="text-primary">لایسنس:</span> <br/> <span style={{wordBreak : "break-all"}}>{data?.spotLisence[0]}</span>
+        </Col>
+      }
+
+    </Row>
+  )
+
+
 }

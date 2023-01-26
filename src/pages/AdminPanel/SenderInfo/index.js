@@ -68,48 +68,48 @@ export default function SenderInfo() {
       type: "number",
       rules: rules.postCode,
     },
-    {
-      tag: CheckBox,
-      label: "نیاز به بیمه دارد؟",
-      state: "needInsurance",
-      btnLabel: ["دارد", "ندارد"],
-    },
-    {
-      tag: CheckBox,
-      label: "چاپ لوگو",
-      state: "printLogo",
-      btnLabel: ["چاپ شود", "چاپ نشود"],
-    },
-    {
-      tag: CheckBox,
-      label: "پیامک ارسال شود؟",
-      state: "notifyBySms",
-    },
-    {
-      tag: CheckBox,
-      label: "نیاز به بسته بندی?",
-      state: "needPackage",
-      btnLabel: ["دارد", "ندارد"],
-    },
-    {
-      tag: CheckBox,
-      label: "needPrinter",
-      state: "needPrinter",
-    },
-    {
-      tag: Select,
-      label: "نوع ارسال",
-      state: "shippingType",
-      type: "number",
-      items: shippingTypes,
-    },
-    {
-      tag: Select,
-      label: "نوع پرداخت",
-      state: "paymentType",
-      type: "number",
-      items: paymentTypes,
-    },
+    // {
+    //   tag: CheckBox,
+    //   label: "نیاز به بیمه دارد؟",
+    //   state: "needInsurance",
+    //   btnLabel: ["دارد", "ندارد"],
+    // },
+    // {
+    //   tag: CheckBox,
+    //   label: "چاپ لوگو",
+    //   state: "printLogo",
+    //   btnLabel: ["چاپ شود", "چاپ نشود"],
+    // },
+    // {
+    //   tag: CheckBox,
+    //   label: "پیامک ارسال شود؟",
+    //   state: "notifyBySms",
+    // },
+    // {
+    //   tag: CheckBox,
+    //   label: "نیاز به بسته بندی?",
+    //   state: "needPackage",
+    //   btnLabel: ["دارد", "ندارد"],
+    // },
+    // {
+    //   tag: CheckBox,
+    //   label: "needPrinter",
+    //   state: "needPrinter",
+    // },
+    // {
+    //   tag: Select,
+    //   label: "نوع ارسال",
+    //   state: "shippingType",
+    //   type: "number",
+    //   items: shippingTypes,
+    // },
+    // {
+    //   tag: Select,
+    //   label: "نوع پرداخت",
+    //   state: "paymentType",
+    //   type: "number",
+    //   items: paymentTypes,
+    // },
   ];
   useEffect(() => getCities(data.senderProvince), [data.senderProvince]);
   return (
