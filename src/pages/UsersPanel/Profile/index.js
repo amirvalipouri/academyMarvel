@@ -7,6 +7,7 @@ import { axios } from "../../../boot";
 import { rules } from "../../../constants";
 import { objectSelect, toast } from "../../../methods";
 export default function Profile() {
+  
   const formControls = [
     {
       label: "نام",
@@ -40,13 +41,20 @@ export default function Profile() {
   ];
   const dispatch = useDispatch();
   const profile = useSelector((s) => s.profile);
-  console.log(profile)
-  if(profile?.lastName?.length == 0 || profile?.firstName?.length == 0){
-    const text = "لطفا اطلاعات خود را وارد کنید"
-    toast({text})
-  }
+  const [ pro , setPro ] = useState({...profile})
+  
+  
   
   const [data, setData] = useState({});
+
+  const setProfileData = (data) => {
+    if(data?.lastName?.length == 0 && data?.firstName?.length == 0){
+      const text = "لطفا اطلاعات خود را تکمیل کنید"
+      toast({text})
+    }
+    setData(data)
+  }
+
   const setProfile = (data = {}) => {
     dispatch({ type: "SET_PROFILE", data });
   };
@@ -62,7 +70,7 @@ export default function Profile() {
       setProfile({ ...profile, ...body });
     });
   };
-  useEffect(() => setData(profile), [profile]);
+  useEffect(() => setProfileData(profile), [profile]);
   return (
     <Form onSubmit={submit} className="row wrapper">
       {formControls.map((item, index) => (
