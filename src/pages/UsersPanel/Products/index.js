@@ -9,6 +9,7 @@ export default function Products() {
     const url = "/pub/shop/products";
     axios.get(url).then(({ data }) => {
       setProducts(data.data);
+      
     });
   };
   useEffect(getProducts, []);

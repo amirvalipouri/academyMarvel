@@ -11,6 +11,10 @@ const landing = [
     label: "دوره‌های رایگان",
     path: "/free-tutorials",
   },
+  {
+    label: "فروشگاه کتاب",
+    path: "/products",
+  },
 ];
 const user = [
   {

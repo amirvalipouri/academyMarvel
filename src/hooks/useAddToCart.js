@@ -11,6 +11,7 @@ export default function useAddToCart() {
       count,
     };
     const response = await axios.post(url, body);
+    console.log("response : ",response)
     if (response.status === 200) {
       setCount((p) => p + 1);
       toast({});

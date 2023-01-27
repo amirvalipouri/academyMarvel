@@ -24,7 +24,7 @@ const MyOrders = () => {
     const { color, name } = purchaseStatus.find((e) => e.id === id) ?? {};
     return <span className={`text-${color} fw-bold`}>{name}</span>;
   };
-  if (Boolean(pages?.totalPages))
+  if(myOrder?.length == 0)
     return <h4 className="text-primary text-center">شما تا به حال سفارشی نداشتید</h4>;
   return (
     <React.Fragment>

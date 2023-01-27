@@ -84,7 +84,6 @@ export default function SignIn() {
   const handleSetToken = ({ data, headers }) => {
     const token = data.token
     const role = data.role;
-    console.log("information : " , data)
     const text = "برای دسترسی به دوره‌ها ثبت‌نام کنید.";
     role === "unregistered" && toast({ text });
     setToken({ token, role });

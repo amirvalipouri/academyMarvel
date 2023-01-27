@@ -137,7 +137,7 @@ export default function Purchases() {
     const url = "/admins/shop/purchases/reportall";
     const body = { _id: id.toString() };
     axios.post(url, body).then(({ data }) => {
-      console.log(data)
+      
       const url = window.URL.createObjectURL(new Blob([data.address]));
       const link = document.createElement('a');
       link.href = url;
