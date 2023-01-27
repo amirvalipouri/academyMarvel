@@ -10,12 +10,12 @@ import PayInfo from "./PayInfo";
 import ShowInfo from "./ShowInfo";
 
 
-export default function Purchase({ data = {} }) {
+export default function Purchase({ data = {}, onUpdate = () => {} }) {
   const params = useParams();
   const [showModal, setShowModal] = useState(false);
-  const [info, setInfo] = useState(data);
+  // const [info, setInfo] = useState(data);
   const [reason, setReason] = useState("");
-  const [address, setAddress] = useState("")
+  // const [address, setAddress] = useState("")
   // const getInfo = () => {
   //   const url = `/admins/shop/purchases/${params.id}`;
   //   axios.get(url).then(({ data }) => {
@@ -23,7 +23,7 @@ export default function Purchase({ data = {} }) {
   //   });
   // };
   const updateStatus = (status = "") => {
-    setInfo((p) => ({ ...p, status }));
+    data = { ...data, status };
   };
   const verifyPurchase = (status = "") => {
     const url = "/admins/shop/purchases/verify";
@@ -37,6 +37,7 @@ export default function Purchase({ data = {} }) {
       updateStatus(status);
       setShowModal(false);
       setReason("")
+      onUpdate(p => p+1)
     });
   };
   const updatePurchase = (status = "") => {
@@ -45,6 +46,7 @@ export default function Purchase({ data = {} }) {
     axios.post(url, body).then(() => {
       toast({});
       updateStatus(status);
+      onUpdate(p => p+1)
     });
   };
 
@@ -69,7 +71,10 @@ export default function Purchase({ data = {} }) {
       link.target = "_blank"
       link.setAttribute('download', 'file.pdf'); //or any other extension
       document.body.appendChild(link);
-      link.click();
+      setTimeout(()=>{
+        link.click();
+      },3000)
+      
 
     });
   }

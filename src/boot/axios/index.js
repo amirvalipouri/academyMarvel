@@ -42,6 +42,18 @@ axios.interceptors.response.use(
     return response;
   },
   (error) => {
+    if (error.response.status == 401) {
+      // const navigate = useNavigate()
+
+      localStorage.removeItem("token");
+      localStorage.removeItem("role");
+      delete axios.defaults.headers.token;
+      store.dispatch({ type: "SET_IS_LOGGED", data : null });
+      
+      window.location.href = "/";
+
+      // navigate('/')
+     }
     handleErrors(error);
     handleLoading("HIDE_LOADING");
     return Promise.reject(error);

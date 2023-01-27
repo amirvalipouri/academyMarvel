@@ -26,7 +26,7 @@ export default function Product() {
     const url = `/pub/shop/products/${productId}`;
     axios.get(url).then(({ data }) => {
       setProduct(data);
-      console.log("data pro : " , data)
+      
     });
   };
   const addProductToCart = () => {

@@ -143,7 +143,10 @@ export default function Purchases() {
       link.href = url;
       link.setAttribute('download', 'file.pdf'); //or any other extension
       document.body.appendChild(link);
-      link.click();
+      setTimeout(()=>{
+        link.click();
+      },3000)
+      
       toast({});
 
     });
@@ -219,7 +222,7 @@ export default function Purchases() {
   return (
     <React.Fragment>
       <PrintModal show={modalInfo != null} onHide={() => setModalInfo(null)} size="lg">
-        <Purchase data={modalInfo} />
+        <Purchase data={modalInfo} onUpdate={setUpdate} />
       </PrintModal>
 
       <PrintModal show={reason != null} onHide={() => setReason(null)} size="lg">

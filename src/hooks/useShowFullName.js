@@ -10,7 +10,7 @@ export default function useShowFullName() {
     if (!isLogged || isEmpty(profile)) return "ورود";
     // if (needRegister) return "پروفایل من";
     const { firstName, lastName } = profile;
-    if(firstName.length == 0 && lastName.length == 0) return " پروفایل من";
+    if(firstName?.length == 0 && lastName?.length == 0) return " پروفایل من";
 
     return `${firstName} ${lastName}`;
   };
