@@ -33,8 +33,8 @@ export default function ProductCard({
         curr: "تومان",
       },
     ];
-    return prices.map((e) => (
-      <span key={e.curr} className="fw-bold">
+    return prices.map((e , index) => (
+      <span key={index + 100} className={`fw-bold ${(e.curr == "USD" && e.price <= 0) ? "opacity-0" : ""}`}>
         {e.off !== 0 && (
           <sub className="text-decoration-line-through text-secondary">
             {e.price.toLocaleString()}
@@ -65,6 +65,7 @@ export default function ProductCard({
           <img
             src={source(activeImg)}
             alt={activeImg}
+            loading="lazy"
             className="w-100 h-100 object-fit-contain"
           />
         )}
@@ -83,8 +84,8 @@ export default function ProductCard({
         <h6 className="text-truncate">{title_fa}</h6>
         <h6 className="text-secondary mt-1 text-truncate">تعداد: {count}</h6>
         <div className="categories mt-2 w-100 text-truncate">
-          {category.map((e) => (
-            <Badge key={e._id} label={e.title_fa} />
+          {category.map((e , index) => (
+            <Badge key={index + 3} label={e.title_fa} />
           ))}
         </div>
         <div className="d-flex align-items-center justify-content-between mt-4">

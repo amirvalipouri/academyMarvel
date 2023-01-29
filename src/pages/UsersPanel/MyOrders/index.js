@@ -14,6 +14,7 @@ const MyOrders = () => {
   const getPurchases = () => {
     const url = "/pub/shop/purchases";
     axios.get(url).then(({ data }) => {
+      console.log("my order : " , data.data)
       setMyOrder(data.data)
       setPages(data.pages);
       scrollToTop();
@@ -47,6 +48,7 @@ const MyOrders = () => {
           <tr>
             <th>شماره پیگیری سفارش</th>
             <th>محصولات</th>
+            <th>تعداد</th>
             <th>تاریخ</th>
             <th>قیمت</th>
             <th>تخفیف</th>
@@ -61,6 +63,7 @@ const MyOrders = () => {
               </td>
 
               <td className="text-success">{e.items?.map((e) => e.product?.title_fa).join(" - ")}</td>
+              <td className="text-success">{e.items?.map((e) => e.count)}</td>
               <td>
                 <span dir="ltr">
                   {moment.miladiToShamsi({

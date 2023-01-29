@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { ButtonGroup } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { showActiveImg, source } from "../../../methods";
+import { showActiveImg, source , toast } from "../../../methods";
 import { axios } from "../../../boot";
 import { useProductStorage } from "../../../hooks";
 import { CartCountContext } from "../../../contexts/CartCount";

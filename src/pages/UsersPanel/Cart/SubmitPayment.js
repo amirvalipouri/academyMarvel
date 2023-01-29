@@ -79,6 +79,7 @@ export default function SubmitPayment({
       as: "textarea",
       label: "توضیحات",
       state: "comment",
+      rules: rules.optional,
     },
   ];
   useEffect(getWallet, []);

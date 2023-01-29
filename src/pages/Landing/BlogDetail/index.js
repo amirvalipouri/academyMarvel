@@ -45,7 +45,7 @@ export default function BlogDetail() {
             </Col>
             <Col xs="12" md="6">
               <div className="w-fit d-flex flex-center col-gap-2 me-md-auto">
-                <img width="24" src={noteIcon} alt="noteIcon" />
+                <img width="24" src={noteIcon} alt="noteIcon" loading="lazy" />
                 <h6 className="text-white">{showDate(detail?.createdAt)}</h6>
               </div>
             </Col>
@@ -57,7 +57,7 @@ export default function BlogDetail() {
           <h5>{item.header}</h5>
           {item.img && (
             <div className="w-100 rounded border border-2 border-primary p-1 shadow">
-              <img className="w-100 rounded" src={item.img} alt={item.header} />
+              <img className="w-100 rounded" src={item.img} alt={item.header} loading="lazy" />
             </div>
           )}
           <p className="text-justify">{item.body}</p>

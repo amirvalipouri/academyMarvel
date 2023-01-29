@@ -15,8 +15,8 @@ export default function Products() {
   useEffect(getProducts, []);
   return (
     <Row className="wrapper">
-      {products.map((e) => (
-        <Col key={e._id} xs="12" md="6" lg="4" xl="3">
+      {products.map((e , index) => (
+        <Col key={index} xs="12" md="6" lg="4" xl="3">
           <ProductCard {...e} />
         </Col>
       ))}

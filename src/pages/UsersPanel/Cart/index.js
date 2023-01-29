@@ -41,6 +41,7 @@ export default function Cart() {
     const url = "/purchases/cart";
     axios.get(url).then(({ data }) => {
       setCartInfo(data);
+      
     });
   };
   const submitPaymentOffline = async () => {
@@ -52,7 +53,7 @@ export default function Cart() {
       const text =
         "رسید شما با موفقیت ثبت شد. سفارش شما توسط کارشناسان بررسی و درصورت تایید محصولات ارسال میشوند.";
       toast({ text, duration: 10000 });
-      navigate("/dashboard", { replace: true });
+      navigate("/my-order", { replace: true });
     });
   };
   const submitPaymentOnline = () => {
@@ -105,6 +106,7 @@ export default function Cart() {
             paymentType={paymentType}
             setPaymentType={setPaymentType}
             setCartInfo={setCartInfo}
+            productInfo={cartInfo}
           />
         )}
         {activeStep === 1 && (

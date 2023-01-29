@@ -1,19 +1,30 @@
 import { useState } from "react";
-import { Dropdown, FormControl, InputGroup } from "react-bootstrap";
+import { Dropdown, FormControl, InputGroup, Button, ButtonGroup } from "react-bootstrap";
 import { axios } from "../../../boot";
 import cardIcon from "../../../assets/icons/card.svg";
 import discountIcon from "../../../assets/icons/discount.svg";
 import { toast } from "../../../methods";
 import { paymentMethods } from "../../../constants";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 export default function PaymentType({
   paymentType = "",
-  setPaymentType = () => {},
-  setCartInfo = () => {},
+  setPaymentType = () => { },
+  setCartInfo = () => { },
+  productInfo = {}
 }) {
   const isLogged = useSelector((s) => s.isLogged);
   const [voucher, setVoucher] = useState("");
+  const [ priceUsd , setPriceUsd ] = useState(false)
+
+  useEffect(()=>{
+    for (const e of productInfo?.items) {
+      if(e?.priceUsd == 0) return setPriceUsd(true)
+    }
+  },[productInfo])
+
+  
   const submitDiscountCode = (e) => {
     e.preventDefault();
     const errorText =
@@ -36,14 +47,12 @@ export default function PaymentType({
       <h6 className="text-danger text-center mb-2">
         شیوه پرداخت را انتخاب کنید.
       </h6>
-      <Dropdown onSelect={setPaymentType} className="mx-auto w-fit">
+      {/* <Dropdown onSelect={setPaymentType} className="mx-auto w-fit">
         <Dropdown.Toggle
           as="button"
           className="w-fit d-flex align-items-center text-primary fw-bold"
         >
-          <img width="30" src={cardIcon} alt="cardIcon" className="ms-2" />
-          {paymentMethods.find((e) => e.id === paymentType)?.name}
-          <i className="bi bi-chevron-down me-2" />
+         
         </Dropdown.Toggle>
         <Dropdown.Menu>
           {paymentMethods.map((e) => (
@@ -57,7 +66,20 @@ export default function PaymentType({
             </Dropdown.Item>
           ))}
         </Dropdown.Menu>
-      </Dropdown>
+      </Dropdown> */}
+      <div className="d-flex flex-column justify-content-center align-items-center my-2">
+        <img width="30" src={cardIcon} alt="cardIcon" className="ms-2" />
+        {paymentMethods.find((e) => e.id === paymentType)?.name}
+        <ButtonGroup className="my-2">
+          {paymentMethods.map((e) => (
+            <Button disabled={e.id == "USD" && priceUsd} onClick={() => { setPaymentType(e.id) }} key={e.id}
+              >
+              {e.name}
+            </Button>
+          ))}
+        </ButtonGroup>
+      </div>
+
       <h6 className="text-dark mt-4 mb-2">تخفیف</h6>
       <form
         onSubmit={submitDiscountCode}

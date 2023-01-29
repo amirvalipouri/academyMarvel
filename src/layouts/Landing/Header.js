@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { navItems, rolesPath } from "../../constants";
@@ -6,6 +6,9 @@ import logoText from "../../assets/logos/logo text.png";
 import logo from "../../assets/logos/logo.svg";
 import Menu from "./Menu";
 import { useShowFullName } from "../../hooks";
+import CartLink from "./CartLink";
+
+
 export default function Header() {
   const showFullName = useShowFullName();
   const [show, setShow] = useState(false);
@@ -46,7 +49,12 @@ export default function Header() {
           </ul>
         </nav>
         <div className="user-control d-none d-lg-flex flex-center col-gap-3">
-          <Link to="/cart" className="bi bi-cart3 fs-3 text-primary" />
+          <div className="position-relative">
+            
+            {/* <Link to="/cart" className="bi bi-cart3 fs-3 text-primary" /> */}
+            <CartLink/>
+          </div>
+          
           <NavLink to={signInPath} className="btn btn-outline-primary Button">
             {showFullName()}
           </NavLink>

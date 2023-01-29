@@ -26,7 +26,6 @@ export default function Product() {
     const url = `/pub/shop/products/${productId}`;
     axios.get(url).then(({ data }) => {
       setProduct(data);
-      
     });
   };
   const addProductToCart = () => {
@@ -53,15 +52,16 @@ export default function Product() {
   ];
   const tabs = [
     {
-      title: "مشخصات کتاب",
+      title: "درباره محصول",
       id: 0,
-      component: Specifications,
-    },
-    {
-      title: "نقد و بررسی",
-      id: 1,
       component: Review,
     },
+    {
+      title: "مشخصات کتاب",
+      id: 1,
+      component: Specifications,
+    }
+    
   ];
   const [activeTab, setActiveTab] = useState(tabs[0].id);
   const ActiveTabComponent = tabs.find((e) => e.id === activeTab).component;
@@ -149,7 +149,7 @@ export default function Product() {
               </Col>
             ))}
           </Row>
-          <Button className="mt-3" onClick={addProductToCart}>
+          <Button disabled={product.count == 0 || product._id == "62e5357a27e966e653153ad6"} className="mt-3" onClick={addProductToCart}>
             افزودن به سبد خرید
           </Button>
           <hr className="my-3 bg-light-gray" />

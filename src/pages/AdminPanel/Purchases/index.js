@@ -37,7 +37,6 @@ export default function Purchases() {
       ([config.params.startDate, config.params.endDate] = params.date);
     delete config.params.date;
     axios.get(url, config).then(({ data }) => {
-      
       setPurchases(data.data);
       setPages(data.pages);
       scrollToTop();
@@ -272,6 +271,7 @@ export default function Purchases() {
       <Table className="d-print-none">
         <thead>
           <tr>
+            <th>شماره پیگیری</th>
             <th>نام خریدار</th>
             <th>تاریخ</th>
             <th>مبلغ نهایی</th>
@@ -284,6 +284,7 @@ export default function Purchases() {
         <tbody>
           {purchases.map((e, i) => (
             <tr key={e._id + i}  >
+              <td>{e?.refId ? e.refId : ""}</td>
               <td onClick={() => setModalInfo(e)}>
                 {e.shipping?.firstName} {e.shipping?.lastName}
               </td>

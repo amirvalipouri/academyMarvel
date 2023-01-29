@@ -5,6 +5,7 @@ import { CartCountContext } from "../../contexts/CartCount";
 export default function CartLink() {
   const { count } = useContext(CartCountContext);
   const showCount = () => {
+    if(count <= 0) return 0
     return count <= 9 ? count : `+${count}`;
   };
   return (

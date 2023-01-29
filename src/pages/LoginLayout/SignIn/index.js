@@ -88,7 +88,7 @@ export default function SignIn() {
     role === "unregistered" && toast({ text });
     setToken({ token, role });
     
-    if(data.firstName?.length == 0 || data.lastName?.length == 0) return navigate("/profile")
+    // if(data.firstName?.length == 0 || data.lastName?.length == 0) return navigate("/profile")
     if (hasCart) return navigate("/cart");
     navigate(rolesPath[role] ?? "/", { replace: true });
   };

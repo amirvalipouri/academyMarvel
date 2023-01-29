@@ -44,6 +44,7 @@ export default function Blog() {
               className="w-100 rounded object-fit-cover shadow transition"
               src={activeBlog.img}
               alt="mainImg"
+              loading="lazy"
             />
           </Col>
           <Col xs="12" lg="6" className="main-section position-relative">

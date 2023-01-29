@@ -36,11 +36,14 @@ export default function Address({
     {
       label: "نام",
       state: "firstName",
+      placeholder : "نام خود را وارد کنید"
     },
     {
       label: "نام خانوادگی",
       state: "lastName",
+      placeholder : "نام خانوادگی خود را وارد کنید"
     },
+    
     {
       tag: Select,
       label: "ارسال به",
@@ -78,6 +81,7 @@ export default function Address({
       label: "شماره تلفن همراه",
       state: "phone",
       type: "number",
+      placeholder : "شماره تلفن دریافت کننده بسته را وارد کنید"
     },
     {
       as: "textarea",
