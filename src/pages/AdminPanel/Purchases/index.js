@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Col, Row, Form } from "react-bootstrap";
 import { Input, Select, Table, Pagination, PrintModal, Button } from "../../../components";
-import { paymentMethods, purchaseStatus } from "../../../constants";
+import { paymentMethods, purchaseStatus  } from "../../../constants";
 import { convertPhone, jsonToXlsx, scrollToTop } from "../../../methods";
 import { axios, moment } from "../../../boot";
 import Purchase from "../Purchase";
@@ -18,6 +18,7 @@ export default function Purchases() {
   const [id, setId] = useState([])
   const [reason, setReason] = useState(null)
   const [ update , setUpdate ] = useState(0)
+
 
   const saveParams = () => {
     const value = JSON.stringify(params);
@@ -36,7 +37,9 @@ export default function Purchases() {
     params.date &&
       ([config.params.startDate, config.params.endDate] = params.date);
     delete config.params.date;
+    config.params.phone && (config.params.phone = convertPhone(params.phone))
     axios.get(url, config).then(({ data }) => {
+      console.log("purchases : " , data.data)
       setPurchases(data.data);
       setPages(data.pages);
       scrollToTop();
@@ -98,6 +101,12 @@ export default function Purchases() {
       clear: true,
     },
     {
+      label: "شماره تلفن",
+      state: "phone",
+      type: "number",
+      clear: true,
+    },
+    {
       tag: Select,
       label: "نوع پرداخت",
       state: "paymentMethod",
@@ -136,10 +145,11 @@ export default function Purchases() {
     const url = "/admins/shop/purchases/reportall";
     const body = { _id: id.toString() };
     axios.post(url, body).then(({ data }) => {
-      
-      const url = window.URL.createObjectURL(new Blob([data.address]));
+      const address = data.address
+      const url = `https://api.academymarvel.com${address}`
       const link = document.createElement('a');
       link.href = url;
+      link.target = "_blank"
       link.setAttribute('download', 'file.pdf'); //or any other extension
       document.body.appendChild(link);
       setTimeout(()=>{
@@ -216,6 +226,17 @@ export default function Purchases() {
     setId([...data])
   }
 
+  const selectAll = () => {
+    let a = []
+    if(id?.length == 0){
+      purchases.map((e,index) => a.push(e._id))
+      setId(a)
+    }else{
+      a = []
+      setId(a)
+
+    }
+  }
 
   useEffect(getPurchases, [params,update]);
   return (
@@ -255,7 +276,7 @@ export default function Purchases() {
               value: params[e.state],
               setValue: (val) => {
                 setPurchases([]);
-                setParams((p) => ({ ...p, page: 1, [e.state]: val }));
+                setParams((p) => ({ ...p, page: 1, [e.state]: val  }));
               },
             })}
           </Col>
@@ -267,12 +288,19 @@ export default function Purchases() {
             <Button className="w-100" disabled={id.length < 1} onClick={() => e.func(e.status)} variant={e.variant}>{e.label}</Button>
           </Col>
         ))}
+
+        <Col className="d-flex justify-content-end align-items-center" xs="12" md="12" lg="12">
+          <Button variant="info" onClick={selectAll}>{id?.length == 0 ? "انتخاب کل" : "حذف کل"}</Button>
+        </Col>
       </Row>
+
+
       <Table className="d-print-none">
         <thead>
           <tr>
             <th>شماره پیگیری</th>
             <th>نام خریدار</th>
+            <th>شماره تلفن</th>
             <th>تاریخ</th>
             <th>مبلغ نهایی</th>
             <th>تخفیف</th>
@@ -288,6 +316,7 @@ export default function Purchases() {
               <td onClick={() => setModalInfo(e)}>
                 {e.shipping?.firstName} {e.shipping?.lastName}
               </td>
+              <td>{convertPhone(e.shipping?.phone)}</td>
               <td onClick={() => setModalInfo(e)}>
                 <span dir="ltr">
                   {moment.miladiToShamsi({

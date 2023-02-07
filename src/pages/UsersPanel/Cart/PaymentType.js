@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Dropdown, FormControl, InputGroup, Button, ButtonGroup } from "react-bootstrap";
+import { FormControl, InputGroup, Button, ButtonGroup, ToggleButton } from "react-bootstrap";
 import { axios } from "../../../boot";
 import cardIcon from "../../../assets/icons/card.svg";
 import discountIcon from "../../../assets/icons/discount.svg";
@@ -16,15 +16,15 @@ export default function PaymentType({
 }) {
   const isLogged = useSelector((s) => s.isLogged);
   const [voucher, setVoucher] = useState("");
-  const [ priceUsd , setPriceUsd ] = useState(false)
+  const [priceUsd, setPriceUsd] = useState(false)
 
-  useEffect(()=>{
+  useEffect(() => {
     for (const e of productInfo?.items) {
-      if(e?.priceUsd == 0) return setPriceUsd(true)
+      if (e?.priceUsd == 0) return setPriceUsd(true)
     }
-  },[productInfo])
+  }, [productInfo])
 
-  
+
   const submitDiscountCode = (e) => {
     e.preventDefault();
     const errorText =
@@ -71,11 +71,23 @@ export default function PaymentType({
         <img width="30" src={cardIcon} alt="cardIcon" className="ms-2" />
         {paymentMethods.find((e) => e.id === paymentType)?.name}
         <ButtonGroup className="my-2">
-          {paymentMethods.map((e) => (
-            <Button disabled={e.id == "USD" && priceUsd} onClick={() => { setPaymentType(e.id) }} key={e.id}
-              >
+          {paymentMethods.map((e,idx) => (
+            // <Button variant="white" className="shadow-sm border" disabled={e.id == "USD" && priceUsd} onClick={() => { setPaymentType(e.id) }} key={e.id}
+            //   >
+            //   {e.name}
+            // </Button>
+            <ToggleButton
+              key={idx}
+              id={`${e.id}`}
+              type="radio"
+              variant={idx % 2 ? 'outline-primary' : 'outline-primary'}
+              name="radio"
+              value={e.id}
+              checked={paymentType === e.id}
+              onChange={(e) => setPaymentType(e.currentTarget.value)}
+            >
               {e.name}
-            </Button>
+            </ToggleButton>
           ))}
         </ButtonGroup>
       </div>

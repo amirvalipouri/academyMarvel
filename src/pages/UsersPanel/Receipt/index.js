@@ -25,9 +25,7 @@ export default function Receipt() {
                 شماره سفارش : {refId}
               </p>
               <p>
-                سفارش شما با موفقیت ثبت و توسط کارشناسان بررسی و درصورت تایید،
-                محصولات بین <span className="fw-bold">1 هفته</span> الی{" "}
-                <span className="fw-bold">10 روز</span> ارسال میشوند.
+                سفارش شما با موفقیت ثبت شد و با توجه به پیش فروش بودن کتاب ها ارسال کتاب ها از  <span className="fw-bold mx-1 ">1 ماه</span> آینده شروع خواهد شد.
               </p>
             </React.Fragment>
           ) : (

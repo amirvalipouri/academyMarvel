@@ -1,15 +1,17 @@
-import React from "react";
+import React ,{useState} from "react";
 import { Col } from "react-bootstrap";
-import { Button } from "../../../components";
+import { Button , PrintModal } from "../../../components";
+import TermsConditions from "../../../components/TermsCondition";
 
 export default function PaymentInfo({
   activeStep = 0,
   data = {},
-  submit = () => {},
+  submit = () => { },
   disabled = false,
   activeAddress = false,
   paymentType = "",
 }) {
+  const [ show , setShow ] = useState(false)
   const {
     totalPrice = 0,
     totalPriceUsd = 0,
@@ -71,6 +73,9 @@ export default function PaymentInfo({
     }));
   return (
     <div className="wrapper w-100 row">
+      <PrintModal show={show} onHide={setShow}>
+        <TermsConditions/>
+      </PrintModal>
       {info.map((e) => (
         <React.Fragment key={e.id}>
           <Col xs="6" className={`text-truncate text-${e.labelColor}`}>
@@ -82,7 +87,11 @@ export default function PaymentInfo({
         </React.Fragment>
       ))}
 
+
+
       <Col xs="12">
+        <p>با ورود به این سایت <span className="text-primary cursor-pointer" onClick={() => setShow(true)}>قوانین و مقررات</span> را پذیرفته ام.</p>
+
         {activeStep !== 2 && (
           <Button disabled={disabled} className="w-100" onClick={submit}>
             ادامه فرایند خرید

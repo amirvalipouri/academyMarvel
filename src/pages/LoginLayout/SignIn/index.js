@@ -9,6 +9,8 @@ import { axios } from "../../../boot";
 import { useQuery, useSetToken } from "../../../hooks";
 import { convertPhone, toast } from "../../../methods";
 import Profile from "../../UsersPanel/Profile";
+import {PrintModal} from "../../../components";
+import TermsConditions from "../../../components/TermsCondition";
 // import googleIcon from "../../../assets/icons/Google.svg";
 // import linkedInIcon from "../../../assets/icons/LinkedIn.svg";
 
@@ -19,6 +21,7 @@ export default function SignIn() {
   const [params] = useSearchParams();
   const phone = params.get("phone");
   const [data, setData] = useState({ phone });
+  const [ show , setShow ] = useState(false)
   
   // console.log("full name : ",fullName)
   
@@ -99,6 +102,9 @@ export default function SignIn() {
   useEffect(() => setData({}), [activeTab]);
   return (
     <Form onSubmit={handleSubmit()} className="row">
+      <PrintModal size="lg" show={show} onHide={setShow}>
+        <TermsConditions/>
+      </PrintModal>
       <h1 className="h4 lh-normal m-0 col-12 text-primary">خوش آمدید</h1>
       <p className="col-12 mb-4">
         برای <span className="fw-bold">ورود</span> یا{" "}
@@ -124,6 +130,9 @@ export default function SignIn() {
           فراموشی رمز ورود
         </Link>
       </Col> */}
+      <Col xs="12">
+        <p>با ورود به این سایت <span className="text-primary cursor-pointer" onClick={()=>setShow(true)}>قوانین و مقررات</span> را پذیرفته ام.</p>
+      </Col>
       <Col xs="12">
         <Button type="submit" className="w-100">
           ورود
